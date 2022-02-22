@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.running.uut.mapper.RunningUutFileListMapper">
+
+    <select id="getUutVersionOptions" resultType="org.jeecg.common.system.vo.DictModel">
+            SELECT id AS `value`, version AS `text`
+            FROM running_uut_version
+            WHERE uut_list_id = #{uutListId}
+    </select>
+
+</mapper>

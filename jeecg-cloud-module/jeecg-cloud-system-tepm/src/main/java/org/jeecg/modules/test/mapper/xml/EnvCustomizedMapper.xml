@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.test.mapper.EnvCustomizedMapper">
+
+    <select id="findByPage" resultType="org.jeecg.modules.test.entity.EvnRunningVo">
+        select
+              e.*,
+              r.project_name
+        from
+              tepm_env_customized e
+              left join running_project r on e.project_id = r.id
+        <where>
+            <if test="envName != null  and envName != ''">and e.env_name like concat('%', #{envName}, '%')</if>
+            <if test="projectName != null  and projectName != ''">and r.project_name like concat('%', #{projectName}, '%')</if>
+            <if test="planName != null and planName != ''">and e.plan_name like concat('%', #{planName}, '%')</if>
+            <if test="projectId != null and projectId != ''">and r.id like concat('%', #{projectId}, '%')</if>
+            <if test="createBy != null  and createBy != ''">and e.create_by=#{createBy}</if>
+            <if test="createBy != null  and createBy != ''">and r.create_by=#{createBy}</if>
+            and e.idel = '0'
+        </where>
+        order by e.create_time desc
+    </select>
+</mapper>

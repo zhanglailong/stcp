@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.CeShiGuoChengMiaoShuBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.CeShiGuoChengMiaoShuBiao">
+        <result column="测试过程描述ID" property="ceShiGuoChengMiaoShuID" />
+        <result column="序号" property="xuHao" />
+        <result column="过程名称" property="guoChengMingCheng" />
+        <result column="开始时间" property="kaiShiShiJian" />
+        <result column="结束时间" property="jieShuShiJian" />
+        <result column="过程概述" property="guoChengGaiShu" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试过程描述ID, 序号, 过程名称, 开始时间, 结束时间, 过程概述
+    </sql>
+
+</mapper>

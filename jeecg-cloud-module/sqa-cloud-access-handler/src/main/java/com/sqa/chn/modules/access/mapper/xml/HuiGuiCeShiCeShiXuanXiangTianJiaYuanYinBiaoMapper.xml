@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.HuiGuiCeShiCeShiXuanXiangTianJiaYuanYinBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.HuiGuiCeShiCeShiXuanXiangTianJiaYuanYinBiao">
+        <result column="ID" property="id" />
+        <result column="测试ID" property="ceShiID" />
+        <result column="测试类型" property="ceShiLeiXing" />
+        <result column="添加原因" property="tianJiaYuanYin" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="更动项ID" property="gengDongXiangID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 测试ID, 测试类型, 添加原因, 轮次ID, 更动项ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5
+    </sql>
+
+</mapper>

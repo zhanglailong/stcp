@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.BeiCeDuiXiangYuCeShiYiJuGuanXiBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.BeiCeDuiXiangYuCeShiYiJuGuanXiBiao">
+        <result column="被测对象ID" property="beiCeDuiXiangID" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="测试依据ID" property="ceShiYiJuID" />
+        <result column="符合与否说明" property="fuHeYuFouShuoMing" />
+        <result column="依据符合与否" property="yiJuFuHeYuFou" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        被测对象ID, 轮次ID, 测试依据ID, 符合与否说明, 依据符合与否
+    </sql>
+
+</mapper>

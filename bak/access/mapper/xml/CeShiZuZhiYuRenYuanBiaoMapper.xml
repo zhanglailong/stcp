@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.CeShiZuZhiYuRenYuanBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.CeShiZuZhiYuRenYuanBiao">
+        <result column="ID" property="id" />
+        <result column="组织人员ID" property="zuZhiRenYuanID" />
+        <result column="序号" property="xuHao" />
+        <result column="角色" property="jiaoSe" />
+        <result column="职称" property="zhiCheng" />
+        <result column="备注" property="beiZhu" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+        <result column="主要职责" property="zhuYaoZhiZe" />
+        <result column="时间需求" property="shiJianXuQiu" />
+        <result column="培训需求" property="peiXunXuQiu" />
+        <result column="测试场所ID" property="ceShiChangSuoID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 组织人员ID, 序号, 角色, 职称, 备注, 轮次ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5, 主要职责, 时间需求, 培训需求, 测试场所ID
+    </sql>
+
+</mapper>

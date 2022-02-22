@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.HuiGuiCeShiWenTiBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.HuiGuiCeShiWenTiBiao">
+        <result column="ID" property="id" />
+        <result column="软件问题" property="ruanJianWenTi" />
+        <result column="软件问题类型" property="ruanJianWenTiLeiXing" />
+        <result column="更动项ID" property="gengDongXiangID" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 软件问题, 软件问题类型, 更动项ID, 轮次ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5
+    </sql>
+
+</mapper>

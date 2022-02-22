@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.ZuZhiRenYuanBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.ZuZhiRenYuanBiao">
+        <result column="ID" property="id" />
+        <result column="姓名" property="xingMing" />
+        <result column="登录名" property="dengLuMing" />
+        <result column="职称" property="zhiCheng" />
+        <result column="密码" property="miMa" />
+        <result column="登录备注" property="dengLuBeiZhu" />
+        <result column="主要职责" property="zhuYaoZhiZe" />
+        <result column="最近修改时间" property="zuiJinXiuGaiShiJian" />
+        <result column="用户角色" property="yongHuJiaoSe" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 姓名, 登录名, 职称, 密码, 登录备注, 主要职责, 最近修改时间, 用户角色
+    </sql>
+
+</mapper>

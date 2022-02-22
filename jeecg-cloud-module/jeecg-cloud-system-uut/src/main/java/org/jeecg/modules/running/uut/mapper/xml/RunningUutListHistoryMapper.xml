@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.running.uut.mapper.RunningUutListHistoryMapper">
+        <!--查询被测对象操作历史记录-->
+        <select id="getRunningUutOperationList" resultType="map" parameterType="org.jeecg.modules.running.uut.entity.RunningUutListHistory">
+            SELECT DISTINCT
+                his.id as id,
+                his.uut_name as uutName,
+                his.uut_version as uutVersion,
+                his.uut_type as uutType,
+                his.uut_code as uutCode,
+                his.uut_assets_id as uutAssetsId,
+                his.uut_status as uutStatus,
+                his.running_uut_list_id as mainId,
+                his.modify_field as modifyField,
+                his.modify_field_value as modifyFieldVale,
+                his.modify_field_old_value as modifyFieldOldVale,
+                his.op_type as opType,
+                his.sort as sort,
+                dict.item_text as modifyFieldName,
+                his.create_time as createTime,
+                suser.realname as createBy,
+                suser1.realname as updateBy
+
+            FROM
+                running_uut_list_history his
+                LEFT JOIN sys_dict_item dict on his.modify_field = dict.item_value
+                LEFT JOIN sys_dict dictMain ON dict.dict_id = dictMain.id
+                LEFT JOIN sys_user suser ON suser.id = his.create_by
+                LEFT JOIN sys_user suser1 ON suser1.username = his.update_by
+
+            WHERE
+<!--                his.running_uut_list_id = #{params.runningUutListId}-->
+                his.modify_field is NULL
+<!--                AND dictMain.dict_code = 'runningUutItem'-->
+                <if test="params.startDate != null and params.startDate != ''">
+                    <![CDATA[
+                        and his.create_time >= concat(#{params.startDate},' 00:00:00')
+                    ]]>
+                </if>
+                <if test="params.endDate != null and params.endDate != ''">
+                    <![CDATA[
+                        and his.create_time <= concat(#{params.endDate},' 23:59:59')
+                    ]]>
+                </if>
+                <if test="params.opType != null and params.opType != -1">
+                    and his.op_type = #{params.opType}
+                </if>
+<!--                <if test="params.modifyField != null and params.modifyField != ''">-->
+<!--                    and (his.modify_field = #{params.modifyField} OR his.modify_field IS null)-->
+<!--                </if>-->
+                <if test="params.uutVersion != null and params.uutVersion != ''">
+                    and (his.uut_version = #{params.uutVersion})
+                </if>
+                <if test="params.uutName != null and params.uutName != ''">
+                    and (his.uut_name = #{params.uutName})
+                </if>
+                <if test="params.uutType != null and params.uutType != ''">
+                    and (his.uut_type = #{params.uutType})
+                </if>
+                <if test="params.uutCode != null and params.uutCode != ''">
+                    and (his.uut_code = #{params.uutCode})
+                </if>
+            ORDER BY
+                his.create_time desc
+        </select>
+</mapper>

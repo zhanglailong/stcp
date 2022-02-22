@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.system.mapper.SysPermissionProjectMapper">
+	<select id="getProjectPermission" parameterType="java.lang.String" resultType="org.jeecg.modules.system.entity.SysPermission">
+		SELECT sp.* 
+			FROM sys_permission sp
+			JOIN sys_permission_project spp ON sp.id = spp.permission_id
+			WHERE sp.parent_id IN
+			<foreach item="item" index="index" collection="parentIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			AND spp.project_id = #{projectId} 
+			AND spp.role_id IN (SELECT role_id FROM sys_user_role WHERE user_id = #{userId})
+ 	</select>
+
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.eval.mapper.EvalComprehensiveAnalysisMapper">
+
+    <select id="selectMainInfo" resultType="org.jeecg.modules.eval.vo.CompAnalysisMainInfoVO">
+        SELECT emi.system_id,
+               emi.sid as id,
+               ems.name,
+               ems.parent_id,
+               ems.parent_name,
+               ems.grand_id,
+               ems.grand_name,
+               ems.formula,
+               ef.formula formula_name,
+               emi.method_id
+        FROM eval_measure_info emi
+                 LEFT JOIN eval_measure_structure ems ON emi.sid = ems.id
+                 LEFT JOIN eval_formula ef ON ems.formula = ef.id
+        WHERE emi.system_id = #{systemId}
+        ORDER BY ems.grand_id + 0,
+                 ems.parent_id + 0,
+                 ems.id
+    </select>
+
+    <!--查询临时表信息-->
+    <select id="queryList" resultType="org.jeecg.modules.eval.vo.TemporaryAnalysisDataDto">
+        SELECT *
+        FROM TEMPORARY_ANALYSIS_DATA
+    </select>
+
+    <!--开启存储过程-->
+    <select id="sqaAnalysisData" statementType="CALLABLE" parameterType="java.lang.String" resultType="java.util.Map">
+        {CALL sqa_analysis_data(#{uutId})}
+    </select>
+    <!--返回权重map-->
+    <select id="measureWeight" parameterType="java.lang.String"
+            resultType="org.jeecg.modules.eval.entity.EvalMeasureWeight">
+        SELECT *
+        FROM eval_measure_weight
+        WHERE system_id = #{systemId}
+    </select>
+    <!--查询评价方法详情-->
+    <select id="selectEvalMethodInfo" parameterType="java.lang.String"
+            resultType="org.jeecg.modules.eval.entity.EvalMethodInfo">
+        SELECT
+            *
+        FROM
+            eval_method_info
+        WHERE
+            method_id = #{methodId}
+    </select>
+    <!--查询三级度量元的计算公式所需的参数-->
+    <select id="selectCalcParam" resultType="java.lang.String">
+        SELECT
+            par_key
+        FROM
+            eval_measure_parameter
+        WHERE measure_id = #{measureId}
+    </select>
+    <!--计算有公式的得分-->
+    <select id="calcRange" resultType="java.lang.String">
+        SELECT
+        score
+        FROM
+        eval_method_info
+        WHERE
+        method_id = #{methodId}
+        AND min_value &lt;= #{val} AND max_value &gt;= #{val}
+    </select>
+</mapper>

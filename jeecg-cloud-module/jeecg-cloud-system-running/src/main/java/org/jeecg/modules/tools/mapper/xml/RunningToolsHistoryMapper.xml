@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.tools.mapper.RunningToolsHistoryMapper">
+    <select id="getRunningToolsOperationList" resultType="map" parameterType="org.jeecg.modules.tools.entity.RunningToolsHistory">
+        SELECT DISTINCT
+            his.id as id,
+            his.tools_name as toolsName,
+            his.tools_code as toolsCode,
+            his.tools_location as toolsLocation,
+            his.tools_type as toolsType,
+            suser.realname as createBy,
+            suser1.realname as updateBy,
+            his.create_time as createTime,
+            his.update_time as updateTime,
+            his.operation_type as operationType
+        FROM
+            running_tools_history his
+        LEFT JOIN sys_user suser ON suser.username = his.create_by
+        LEFT JOIN sys_user suser1 ON suser1.id = his.update_by
+        WHERE 1 = 1
+        <if test="params.startDate != null and params.startDate != ''">
+            <![CDATA[
+                        and his.create_time >= concat(#{params.startDate},' 00:00:00')
+                    ]]>
+        </if>
+        <if test="params.endDate != null and params.endDate != ''">
+            <![CDATA[
+                        and his.create_time <= concat(#{params.endDate},' 23:59:59')
+                    ]]>
+        </if>
+        <if test="params.operationType != null and params.operationType != -1">
+            and his.operation_type = #{params.operationType}
+        </if>
+        <if test="params.toolsName != null and params.toolsName != ''">
+            and (his.tools_name = #{params.toolsName})
+        </if>
+        <if test="params.toolsCode != null and params.toolsCode != ''">
+            and (his.tools_code = #{params.toolsCode})
+        </if>
+        <if test="params.toolsLocation != null and params.toolsLocation != ''">
+            and (his.tools_location = #{params.toolsLocation})
+        </if>
+        <if test="params.toolsType != null and params.toolsType != ''">
+            and (his.tools_type = #{params.toolsType})
+        </if>
+        ORDER BY
+        his.update_time desc
+    </select>
+</mapper>

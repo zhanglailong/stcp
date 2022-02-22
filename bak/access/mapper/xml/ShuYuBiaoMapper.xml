@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.ShuYuBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.ShuYuBiao">
+        <result column="ID" property="id" />
+        <result column="序号" property="xuHao" />
+        <result column="文档名称" property="wenDangMingCheng" />
+        <result column="术语和缩略语名" property="shuYuHeSuoLveYuMing" />
+        <result column="确切定义" property="queQieDingYi" />
+        <result column="轮次ID" property="lunCiID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 序号, 文档名称, 术语和缩略语名, 确切定义, 轮次ID
+    </sql>
+
+</mapper>

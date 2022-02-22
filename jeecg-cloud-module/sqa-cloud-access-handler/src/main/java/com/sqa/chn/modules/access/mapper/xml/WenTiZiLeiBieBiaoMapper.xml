@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.WenTiZiLeiBieBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.WenTiZiLeiBieBiao">
+        <result column="ID" property="id" />
+        <result column="问题子类别名称" property="wenTiZiLeiBieMingCheng" />
+        <result column="问题类别ID" property="wenTiLeiBieID" />
+        <result column="说明" property="shuoMing" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="序号" property="xuHao" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 问题子类别名称, 问题类别ID, 说明, 预留字段1, 预留字段2, 预留字段3, 序号
+    </sql>
+
+</mapper>

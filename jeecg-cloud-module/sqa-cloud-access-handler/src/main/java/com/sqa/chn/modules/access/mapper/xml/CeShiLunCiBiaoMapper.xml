@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.CeShiLunCiBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.CeShiLunCiBiao">
+        <result column="轮次ID" property="lunCiID" />
+        <result column="轮次标识" property="lunCiBiaoShi" />
+        <result column="序号" property="xuHao" />
+        <result column="轮次名称" property="lunCiMingCheng" />
+        <result column="轮次特点" property="lunCiTeDian" />
+        <result column="轮次简要描述" property="lunCiJianYaoMiaoShu" />
+        <result column="是否冻结" property="shiFouDongJie" />
+        <result column="测试进度" property="ceShiJinDu" />
+        <result column="软件准备" property="ruanJianZhunBei" />
+        <result column="硬件准备" property="yingJianZhunBei" />
+        <result column="其它测试准备" property="qiTaCeShiZhunBei" />
+        <result column="设计人员" property="sheJiRenYuan" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+        <result column="轮次来源" property="lunCiLaiYuan" />
+        <result column="系统标签" property="xiTongBiaoQian" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="改进建议" property="gaiJinJianYi" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        轮次ID, 轮次标识, 序号, 轮次名称, 轮次特点, 轮次简要描述, 是否冻结, 测试进度, 软件准备, 硬件准备, 其它测试准备, 设计人员, 预留字段3, 预留字段4, 预留字段5, 轮次来源, 系统标签, 预留字段1, 改进建议, 预留字段2
+    </sql>
+
+</mapper>

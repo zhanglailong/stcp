@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.CeShiGuoChengMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.CeShiGuoCheng">
+        <result column="测试过程ID" property="ceShiGuoChengID" />
+        <result column="测试用例ID" property="ceShiYongLiID" />
+        <result column="测试激励类型ID" property="ceShiJiLiLeiXingID" />
+        <result column="序号" property="xuHao" />
+        <result column="输入及操作" property="shuRuJiCaoZuo" />
+        <result column="期望结果" property="qiWangJieGuo" />
+        <result column="评估标准" property="pingGuBiaoZhun" />
+        <result column="实测结果" property="shiCeJieGuo" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+        <result column="问题报告单ID" property="wenTiBaoGaoDanID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试过程ID, 测试用例ID, 测试激励类型ID, 序号, 输入及操作, 期望结果, 评估标准, 实测结果, 轮次ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5, 问题报告单ID
+    </sql>
+
+</mapper>

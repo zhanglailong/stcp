@@ -1,0 +1,18 @@
+server:
+  #微服务端口
+  port: 7004
+spring:
+  cloud:
+    nacos:
+      discovery:
+        ip: @config.ip@
+  application:
+    name: jeecg-system-sjcj
+
+jwt:
+  config:
+    key: saas-ihrm
+    ttl: 3600000
+tepm:
+  version: v1.0.1
+  remarks: 这是v1.0.1版本

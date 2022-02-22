@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.CeShiYongLiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.CeShiYongLi">
+        <result column="测试用例ID" property="ceShiYongLiID" />
+        <result column="测试用例名称" property="ceShiYongLiMingCheng" />
+        <result column="追踪关系" property="zhuiZongGuanXi" />
+        <result column="用例描述" property="yongLiMiaoShu" />
+        <result column="用例的初始化" property="yongLiDeChuShiHua" />
+        <result column="测试过程终止条件" property="ceShiGuoChengZhongZhiTiaoJian" />
+        <result column="测试结果评估标准" property="ceShiJieGuoPingGuBiaoZhun" />
+        <result column="前提和约束" property="qianTiHeYueShu" />
+        <result column="执行与否" property="zhiXingYuFou" />
+        <result column="测试人员" property="ceShiRenYuan" />
+        <result column="测试时间" property="ceShiShiJian" />
+        <result column="测试结论" property="ceShiJieLun" />
+        <result column="通过与否" property="tongGuoYuFou" />
+        <result column="备注" property="beiZhu" />
+        <result column="测试用例类型ID" property="ceShiYongLiLeiXingID" />
+        <result column="设计人员" property="sheJiRenYuan" />
+        <result column="设计时间" property="sheJiShiJian" />
+        <result column="未执行原因" property="weiZhiXingYuanYin" />
+        <result column="预计工作时间" property="yuJiGongZuoShiJian" />
+        <result column="实际工作时间" property="shiJiGongZuoShiJian" />
+        <result column="扩展" property="kuoZhan" />
+        <result column="用例类型" property="yongLiLeiXing" />
+        <result column="测试用例标识" property="ceShiYongLiBiaoShi" />
+        <result column="是否属于本项目" property="shiFouShuYuBenXiangMu" />
+        <result column="前向ID" property="qianXiangID" />
+        <result column="用例设计审核人" property="yongLiSheJiShenHeRen" />
+        <result column="审核结论" property="shenHeJieLun" />
+        <result column="审核时间" property="shenHeShiJian" />
+        <result column="用例设计审核" property="yongLiSheJiShenHe" />
+        <result column="用例设计审核说明" property="yongLiSheJiShenHeShuoMing" />
+        <result column="用例记录审核人" property="yongLiJiLuShenHeRen" />
+        <result column="用例记录审核" property="yongLiJiLuShenHe" />
+        <result column="用例记录审核说明" property="yongLiJiLuShenHeShuoMing" />
+        <result column="用例不执行原因" property="yongLiBuZhiXingYuanYin" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+        <result column="沿用类型" property="yanYongLeiXing" />
+        <result column="偏差说明" property="pianChaShuoMing" />
+        <result column="偏差理由" property="pianChaLiYou" />
+        <result column="偏差影响" property="pianChaYingXiang" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试用例ID, 测试用例名称, 追踪关系, 用例描述, 用例的初始化, 测试过程终止条件, 测试结果评估标准, 前提和约束, 执行与否, 测试人员, 测试时间, 测试结论, 通过与否, 备注, 测试用例类型ID, 设计人员, 设计时间, 未执行原因, 预计工作时间, 实际工作时间, 扩展, 用例类型, 测试用例标识, 是否属于本项目, 前向ID, 用例设计审核人, 审核结论, 审核时间, 用例设计审核, 用例设计审核说明, 用例记录审核人, 用例记录审核, 用例记录审核说明, 用例不执行原因, 轮次ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5, 沿用类型, 偏差说明, 偏差理由, 偏差影响
+    </sql>
+
+</mapper>

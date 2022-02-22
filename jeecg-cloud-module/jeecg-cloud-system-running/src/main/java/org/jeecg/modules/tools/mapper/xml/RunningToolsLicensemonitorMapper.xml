@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.tools.mapper.RunningToolsLicensemonitorMapper">
+
+    <delete id="deleteByMainId" parameterType="java.lang.String">
+        DELETE
+        FROM running_tools_licensemonitor
+        WHERE license_id = #{mainId}    </delete>
+
+    <select id="selectByMainId" parameterType="java.lang.String"
+            resultType="org.jeecg.modules.tools.entity.RunningToolsLicensemonitor">
+        SELECT *
+        FROM running_tools_licensemonitor
+        WHERE license_id = #{mainId}    </select>
+
+	<!--查询license监控列表-->
+	<select id="selectMonitorList" parameterType="java.lang.String"
+            resultType="org.jeecg.modules.tools.vo.RunningToolsMonitorListVO">
+        SELECT
+            rtlt.id AS tools_id,
+            rtlt.tools_name AS tool_name,
+            rtlt.need_monitor_or_not AS need_monitor_or_not,
+            ( SELECT COUNT( rtle.id )
+              FROM running_tools_license rtle
+              WHERE rtle.tools_id = rtlt.id
+              AND rtle.del_flag = 0
+            ) AS totalLicenseNum,
+            ( SELECT COUNT( DISTINCT rtlr.license_id )
+              FROM running_tools_licensemonitor rtlr
+              WHERE rtlr.tools_id = rtlt.id
+            ) AS usedLicenseNum
+        FROM
+            running_tools_list rtlt
+        WHERE 1=1
+        <if test="toolName != null">
+            AND rtlt.tools_name LIKE CONCAT('%',#{toolName},'%')
+        </if>
+	</select>
+</mapper>

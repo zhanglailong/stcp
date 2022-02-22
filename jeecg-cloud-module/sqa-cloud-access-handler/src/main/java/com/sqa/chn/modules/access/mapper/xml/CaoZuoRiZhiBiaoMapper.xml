@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.CaoZuoRiZhiBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.CaoZuoRiZhiBiao">
+        <result column="ID" property="id" />
+        <result column="事件名" property="shiJianMing" />
+        <result column="发生时间" property="faShengShiJian" />
+        <result column="所操作机器IP" property="suoCaoZuoJiQiIP" />
+        <result column="事件类型" property="shiJianLeiXing" />
+        <result column="事件主题" property="shiJianZhuTi" />
+        <result column="事件结果" property="shiJianJieGuo" />
+        <result column="操作人员" property="caoZuoRenYuan" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 事件名, 发生时间, 所操作机器IP, 事件类型, 事件主题, 事件结果, 操作人员
+    </sql>
+
+</mapper>

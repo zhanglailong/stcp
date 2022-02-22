@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.eval.mapper.EvalSystemMapper">
+    <select id="getUutList" resultType="org.jeecg.modules.running.uut.entity.RunningUutList">
+        SELECT *
+        FROM running_uut_list
+        WHERE delete_flag = 0 AND test_template = #{systemId}
+    </select>
+
+    <select id="findUniqueBy" resultType="org.jeecg.modules.running.project.entity.RunningProject">
+        SELECT *
+        FROM  running_project
+        WHERE ${fieldName} = #{value}
+    </select>
+
+    <!--查询任务到期且没有结束的任务列表-->
+    <select id="getNotFinishProjectList" resultType="org.jeecg.modules.running.project.entity.RunningProject">
+        select
+            id,
+            project_name,
+            project_member_ids
+        from
+            running_project
+        where
+            finish_status = 0
+			<![CDATA[
+          and finish_date <= CURDATE()
+			]]>
+			and b_not_finish_msg = 0
+          AND del_flag = 0
+    </select>
+
+    <select id="getTaskIds" resultType="java.lang.String">
+        SELECT id
+        FROM running_task
+        WHERE project_id = #{projectId} AND del_flag = #{delStatus}
+        <if test="turnId != null and turnId != ''">
+            AND turn_id = #{turnId}
+        </if>
+    </select>
+
+    <select id="getCaseIds" resultType="java.lang.String">
+        SELECT c.id
+        FROM running_case c
+        LEFT JOIN running_task t on c.test_task_id = t.id
+        WHERE c.del_flag = 0 AND t.del_flag = 0
+        <if test="taskIds != null and taskIds.size > 0">
+            AND t.id IN
+            <foreach collection="taskIds" item="taskId" index="index" open="(" close=")" separator=",">
+                #{taskId}
+            </foreach>
+        </if>
+        <if test="turnId != null and turnId != ''">
+            AND t.turn_id = #{turnId}
+        </if>
+    </select>
+
+    <select id="getAccessCaseIds" resultType="java.lang.String">
+        SELECT c.id
+        FROM running_case c
+        LEFT JOIN running_task t on c.test_task_id = t.id
+        WHERE c.del_flag = 0 AND c.test_real_result = '0'
+          AND t.del_flag = 0
+        <if test="taskIds != null and taskIds.size > 0">
+          AND c.test_task_id IN
+            <foreach collection="taskIds" item="taskId" index="index" open="(" close=")" separator=",">
+                #{taskId}
+            </foreach>
+        </if>
+        <if test="turnId != null and turnId != ''">
+            AND t.turn_id = #{turnId}
+        </if>
+    </select>
+
+    <select id="getQuestionIds" resultType="java.lang.Integer">
+        SELECT COUNT(q.id)
+        FROM running_question q
+        LEFT JOIN running_case c ON c.id = q.case_id
+        LEFT JOIN running_task t on c.test_task_id = t.id
+        WHERE q.del_flag = 0 AND c.del_flag = 0 AND t.del_flag = 0
+        <if test="caseIds != null and caseIds.size > 0">
+          AND q.case_id IN
+            <foreach collection="caseIds" item="caseId" index="index" open="(" close=")" separator=",">
+                #{caseId}
+            </foreach>
+        </if>
+        <if test="turnId != null and turnId != ''">
+            AND t.turn_id = #{turnId}
+        </if>
+    </select>
+
+    <select id="getSolvedQuestionIds" resultType="java.lang.Integer">
+        SELECT COUNT(q.id)
+        FROM running_question q
+        LEFT JOIN running_case c ON c.id = q.case_id
+        LEFT JOIN running_task t on c.test_task_id = t.id
+        WHERE q.del_flag = 0 AND c.del_flag = 0 AND t.del_flag = 0
+        <if test="caseIds != null and caseIds.size > 0">
+          AND q.case_id IN
+            <foreach collection="caseIds" item="caseId" index="index" open="(" close=")" separator=",">
+                #{caseId}
+            </foreach>
+        </if>
+        <if test="turnId != null and turnId != ''">
+            AND t.turn_id = #{turnId}
+        </if>
+    </select>
+
+    <select id="getExecutedCaseCount" resultType="java.lang.Integer">
+        SELECT COUNT(c.id)
+        FROM running_case c
+        LEFT JOIN running_task t on c.test_task_id = t.id
+        WHERE c.del_flag = 0 AND c.test_result IS NOT NULL AND c.test_result != '' AND t.del_flag = 0
+        <if test="taskIds != null and taskIds.size > 0">
+            AND c.test_task_id IN
+            <foreach collection="taskIds" item="taskId" index="index" open="(" close=")" separator=",">
+                #{taskId}
+            </foreach>
+        </if>
+        <if test="turnId != null and turnId != ''">
+            AND t.turn_id = #{turnId}
+        </if>
+    </select>
+
+    <select id="getTurnList" resultType="java.lang.String">
+        SELECT id
+        FROM  running_project_turn
+        WHERE project_id = #{projectId}
+    </select>
+
+    <select id="getTurnCaseExecute" resultType="java.util.HashMap">
+        SELECT t.turn_num AS turn, COUNT(c.id) AS num
+        FROM running_case c
+        LEFT JOIN running_task r ON r.id = c.test_task_id
+        LEFT JOIN running_project_turn t ON r.turn_id = t.id
+        WHERE r.project_id = #{projectId}
+        <if test="taskStatus == '0'">
+            AND c.test_result IS NOT NULL AND c.test_result != ''
+        </if>
+        <if test="taskStatus == '1'">
+            AND c.test_result IS NULL OR c.test_result = ''
+        </if>
+        AND r.del_flag = #{delFlag} AND c.del_flag = #{delFlag}
+        GROUP BY r.turn_id
+        ORDER BY r.turn_id
+    </select>
+
+    <select id="getTurnQuestionSolved" resultType="java.util.HashMap">
+        SELECT t.turn_num AS turn, COUNT(c.id) AS num
+        FROM running_question q
+        LEFT JOIN running_case c ON c.id = q.case_id
+        LEFT JOIN running_task r ON r.id = c.test_task_id
+        LEFT JOIN running_project_turn t ON r.turn_id = t.id
+        WHERE r.project_id = #{projectId}
+        AND q.status = #{taskStatus}
+        AND r.del_flag = #{delFlag} AND c.del_flag = #{delFlag}
+        GROUP BY r.turn_id
+        ORDER BY r.turn_id
+    </select>
+
+    <select id="getParamsBySid" resultType="java.util.Map">
+        SELECT par_key AS id, par_name AS value
+        FROM eval_measure_parameter
+        WHERE measure_id = #{sid}
+    </select>
+</mapper>

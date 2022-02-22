@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.CeShiJiBieDingYiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.CeShiJiBieDingYi">
+        <result column="测试级别定义ID" property="ceShiJiBieDingYiID" />
+        <result column="序号" property="xuHao" />
+        <result column="测试级别名称" property="ceShiJiBieMingCheng" />
+        <result column="测试级别说明" property="ceShiJiBieShuoMing" />
+        <result column="备注说明" property="beiZhuShuoMing" />
+        <result column="轮次ID" property="lunCiID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试级别定义ID, 序号, 测试级别名称, 测试级别说明, 备注说明, 轮次ID
+    </sql>
+
+</mapper>

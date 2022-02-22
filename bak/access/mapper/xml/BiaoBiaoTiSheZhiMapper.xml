@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.BiaoBiaoTiSheZhiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.BiaoBiaoTiSheZhi">
+        <result column="ID" property="id" />
+        <result column="表名称" property="biaoMingCheng" />
+        <result column="字段名" property="ziDuanMing" />
+        <result column="显示名" property="xianShiMing" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 表名称, 字段名, 显示名
+    </sql>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.HuiGuiCeShiYingXiangYuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.HuiGuiCeShiYingXiangYu">
+        <result column="ID" property="id" />
+        <result column="序号" property="xuHao" />
+        <result column="初次分析标志" property="chuCiFenXiBiaoZhi" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+        <result column="测试问题涉及的测试用例" property="ceShiWenTiSheJiDeCeShiYongLi" />
+        <result column="涉及到的测试内容" property="sheJiDaoDeCeShiNeiRong" />
+        <result column="涉及到的测试内容种类" property="sheJiDaoDeCeShiNeiRongZhongLei" />
+        <result column="快捷方式的父节点" property="kuaiJieFangShiDeFuJieDian" />
+        <result column="更动项" property="gengDongXiang" />
+        <result column="更动报告单号" property="gengDongBaoGaoDanHao" />
+        <result column="软件更动单ID" property="ruanJianGengDongDanID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 序号, 初次分析标志, 轮次ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5, 测试问题涉及的测试用例, 涉及到的测试内容, 涉及到的测试内容种类, 快捷方式的父节点, 更动项, 更动报告单号, 软件更动单ID
+    </sql>
+
+</mapper>

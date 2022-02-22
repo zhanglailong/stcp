@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.CeShiHuanJingZhunBeiYuBeiCeRuanJianAnZhuangJiHuaBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.CeShiHuanJingZhunBeiYuBeiCeRuanJianAnZhuangJiHuaBiao">
+        <result column="测试环境准备与被测软件安装计划表ID" property="ceShiHuanJingZhunBeiYuBeiCeRuanJianAnZhuangJiHuaBiaoID" />
+        <result column="序号" property="xuHao" />
+        <result column="工作项目" property="gongZuoXiangMu" />
+        <result column="计划开始时间" property="jiHuaKaiShiShiJian" />
+        <result column="计划完成时间" property="jiHuaWanChengShiJian" />
+        <result column="责任人" property="zeRenRen" />
+        <result column="备注" property="beiZhu" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="测试场所ID" property="ceShiChangSuoID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试环境准备与被测软件安装计划表ID, 序号, 工作项目, 计划开始时间, 计划完成时间, 责任人, 备注, 轮次ID, 测试场所ID
+    </sql>
+
+</mapper>

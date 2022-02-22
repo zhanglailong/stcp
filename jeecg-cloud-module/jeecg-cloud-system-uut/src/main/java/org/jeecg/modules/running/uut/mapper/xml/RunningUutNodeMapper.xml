@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.running.uut.mapper.RunningUutNodeMapper">
+
+	<delete id="deleteByMainId" parameterType="java.lang.String">
+		DELETE 
+		FROM  running_uut_node 
+		WHERE
+			 catagory_id = #{mainId} 	</delete>
+	
+	<select id="selectByMainId" parameterType="java.lang.String" resultType="org.jeecg.modules.running.uut.entity.RunningUutNode">
+		SELECT
+			id AS id,
+			catagory_id AS catagoryId,
+			code AS code,
+			`name` as name,
+			code AS code,
+			pre_node AS preNode,
+			next_node AS nextNode,
+			(SELECT `name` FROM running_uut_node pre WHERE pre.id = running_uut_node.pre_node) AS preNodeDictText,
+			(SELECT `name` FROM running_uut_node next WHERE next.id = running_uut_node.next_node) AS nextNodeDictText
+		FROM
+			running_uut_node
+		WHERE
+			<if test="mainId != 'noMainId'.toString()">
+				catagory_id = #{mainId}
+			</if>
+			<if test="mainId == 'noMainId'.toString()">
+				catagory_id is null
+			</if>
+		order by
+			create_time asc
+	</select>
+
+	<!--查询流程节点列表，添加编辑节点弹窗初始化需要，查询时如果id有值不能查询自己的节点-->
+	<select id="selectNodeListByIdAndMainId" parameterType="org.jeecg.modules.running.uut.entity.RunningUutNode" resultType="map">
+		SELECT
+			node.id as value,
+			node.name as label
+		FROM
+			running_uut_node node
+		WHERE
+			1 = 1
+			<if test="params.catagoryId == null">
+				AND node.catagory_id IS NULL
+			</if>
+			<if test="params.catagoryId != null">
+				AND node.catagory_id = #{params.catagoryId}
+			</if>
+			<if test="params.id != null">
+				and node.id != #{params.id}
+			</if>
+	</select>
+</mapper>

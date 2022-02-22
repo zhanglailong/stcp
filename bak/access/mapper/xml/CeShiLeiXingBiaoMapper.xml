@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.CeShiLeiXingBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.CeShiLeiXingBiao">
+        <result column="测试类型ID" property="ceShiLeiXingID" />
+        <result column="序号" property="xuHao" />
+        <result column="测试类型名称" property="ceShiLeiXingMingCheng" />
+        <result column="简写码" property="jianXieMa" />
+        <result column="所属被测对象ID" property="suoShuBeiCeDuiXiangID" />
+        <result column="父测试类型ID" property="fuCeShiLeiXingID" />
+        <result column="子节点类型" property="ziJieDianLeiXing" />
+        <result column="预计工作时间" property="yuJiGongZuoShiJian" />
+        <result column="总体要求" property="zongTiYaoQiu" />
+        <result column="前向ID" property="qianXiangID" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="设计人员" property="sheJiRenYuan" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试类型ID, 序号, 测试类型名称, 简写码, 所属被测对象ID, 父测试类型ID, 子节点类型, 预计工作时间, 总体要求, 前向ID, 轮次ID, 设计人员, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5
+    </sql>
+
+</mapper>

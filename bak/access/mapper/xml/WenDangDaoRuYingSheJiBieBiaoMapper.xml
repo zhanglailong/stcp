@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.WenDangDaoRuYingSheJiBieBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.WenDangDaoRuYingSheJiBieBiao">
+        <result column="序号" property="xuHao" />
+        <result column="标题级别" property="biaoTiJiBie" />
+        <result column="操作对象" property="caoZuoDuiXiang" />
+        <result column="备注" property="beiZhu" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        序号, 标题级别, 操作对象, 备注
+    </sql>
+
+</mapper>

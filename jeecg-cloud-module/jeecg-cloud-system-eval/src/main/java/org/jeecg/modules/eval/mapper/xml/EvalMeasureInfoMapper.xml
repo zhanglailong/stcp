@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.eval.mapper.EvalMeasureInfoMapper">
+	
+	<!--根据parentId查询质量子特性名称-->
+    <select id="selectParentNameByPid" resultType="string">
+        SELECT distinct parent_name FROM `eval_measure_structure`
+        WHERE parent_id = #{pId} LIMIT 1
+    </select>
+	
+	<!--根据grandId查询质量特性名称-->
+    <select id="selectGrandNameByGid" resultType="string">
+        SELECT distinct grand_name FROM `eval_measure_structure` 
+        WHERE grand_id = #{gId} LIMIT 1
+    </select>
+    
+	<!--根据质量子特性名称查询pid-->
+    <select id="selectParentIdByPname" resultType="string">
+        SELECT distinct parent_id FROM `eval_measure_structure`
+        WHERE parent_name = #{pName} LIMIT 1
+    </select>
+	
+	<!--根据质量特性名称查询gid-->
+    <select id="selectGrandIdByGname" resultType="string">
+        SELECT distinct grand_id FROM `eval_measure_structure` 
+        WHERE grand_name = #{gName} LIMIT 1
+    </select>
+    
+    <!--根据评价方法Id查询评价方法名称-->
+    <select id="selectMethodNameById" resultType="string">
+        SELECT distinct name FROM `eval_method`
+        WHERE id = #{id} 
+    </select>
+    
+    <!--根据评价方法Id查询评价方法名称-->
+    <select id="selectMethodIdByName" resultType="string">
+        SELECT distinct id FROM `eval_method`
+        WHERE name = #{name} 
+    </select>
+
+    <!--根据id查询度量名称-->
+    <select id="selectNameById" resultType="string">
+        SELECT `name` FROM `eval_measure_structure`
+        WHERE id = #{id}
+    </select>
+    <!--根据度量Id查询计算公式-->
+    <!-- <select id="selectFormulaById" resultType="string">
+        SELECT formula 
+        FROM `eval_measure_structure`
+        WHERE id =  #{id}  
+    </select> -->
+    <select id="selectFormulaById" resultType="string">
+        SELECT formula
+        FROM `eval_formula`
+        WHERE id = (SELECT distinct formula FROM `eval_measure_info` where id = #{id} and system_id = #{systemId} )
+    </select>
+
+    <select id="getListBySystemId" resultType="org.jeecg.modules.eval.entity.EvalMeasureInfo">
+        SELECT *
+        FROM `eval_measure_info`
+        WHERE system_id = #{systemId}
+    </select>
+</mapper>

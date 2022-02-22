@@ -1,0 +1,25 @@
+server:
+  port: 9049
+spring:
+  application:
+    name: tepm-agent-client
+
+socket:
+  server:
+    collect:
+      client: 0/5 * * * * ?
+      scheduler: 0/10 * * * * ?
+      size: 1024
+      ip: 192.168.1.9 #192.168.10.101 #192.168.10.101 192.168.56.1
+      port: 9050
+      time: 5
+  autoit:
+    url: C:\Program Files (x86)\AutoIt3\AutoIt3.exe
+    loadrunnerSub: C:\home\autoit\LoadRunner安装组件.au3
+    loadrunner: C:\home\autoit\LoadRunner安装.au3
+testtool:
+  jmeterHome: C:\\apache-jmeter-5.4.1
+  pathJmx: C:\home\tools\
+  loadRunner: C:\\Program Files (x86)\HP\LoadRunner\bin
+  appScan: C:\Program Files (x86)\HCL\AppScan Standard
+  underStand: C:\Program Files\SciTools\bin\pc-win64

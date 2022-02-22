@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.CeShiXiangBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.CeShiXiangBiao">
+        <result column="测试项ID" property="ceShiXiangID" />
+        <result column="测试项标识" property="ceShiXiangBiaoShi" />
+        <result column="序号" property="xuHao" />
+        <result column="测试项名称" property="ceShiXiangMingCheng" />
+        <result column="简写码" property="jianXieMa" />
+        <result column="测试项说明及测试要求" property="ceShiXiangShuoMingJiCeShiYaoQiu" />
+        <result column="测试方法说明" property="ceShiFangFaShuoMing" />
+        <result column="追踪关系" property="zhuiZongGuanXi" />
+        <result column="终止条件" property="zhongZhiTiaoJian" />
+        <result column="优先级" property="youXianJi" />
+        <result column="下属测试用例说明" property="xiaShuCeShiYongLiShuoMing" />
+        <result column="所属测试类型ID" property="suoShuCeShiLeiXingID" />
+        <result column="父节点ID" property="fuJieDianID" />
+        <result column="预计工作时间" property="yuJiGongZuoShiJian" />
+        <result column="测试项类型ID" property="ceShiXiangLeiXingID" />
+        <result column="前向ID" property="qianXiangID" />
+        <result column="审核人" property="shenHeRen" />
+        <result column="审核结论" property="shenHeJieLun" />
+        <result column="审核时间" property="shenHeShiJian" />
+        <result column="审核状态" property="shenHeZhuangTai" />
+        <result column="审核备注" property="shenHeBeiZhu" />
+        <result column="设计人员" property="sheJiRenYuan" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="前提约束" property="qianTiYueShu" />
+        <result column="评估准则" property="pingGuZhunZe" />
+        <result column="测试要求" property="ceShiYaoQiu" />
+        <result column="覆盖的测试要求" property="fuGaiDeCeShiYaoQiu" />
+        <result column="预留字段6" property="yuLiuZiDuan6" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试项ID, 测试项标识, 序号, 测试项名称, 简写码, 测试项说明及测试要求, 测试方法说明, 追踪关系, 终止条件, 优先级, 下属测试用例说明, 所属测试类型ID, 父节点ID, 预计工作时间, 测试项类型ID, 前向ID, 审核人, 审核结论, 审核时间, 审核状态, 审核备注, 设计人员, 轮次ID, 预留字段1, 预留字段2, 预留字段4, 预留字段5, 预留字段3, 前提约束, 评估准则, 测试要求, 覆盖的测试要求, 预留字段6
+    </sql>
+
+    <resultMap id="CeShiXiang4CeShiYongLiVo" type="org.jeecg.modules.access.dto.CeShiXiang4CeShiYongLiVo" extends="org.jeecg.modules.access.mapper.CeShiXiangBiaoMapper.BaseResultMap">
+        <result column="fullName" property="fullName" />
+    </resultMap>
+
+    <select id="pageCeShiXiang4CeShiYongLiVo4LikeFullName" resultMap="CeShiXiang4CeShiYongLiVo">
+        SELECT task.* FROM (
+        SELECT son.*, (parent.测试项名称 + '/' + son.测试项名称) fullName
+        FROM
+        测试项表 son
+        LEFT JOIN
+        测试项表 parent
+        ON
+        parent.[测试项ID] = son.父节点ID
+        WHERE son.[父节点ID] != '0'
+        ) task
+        WHERE fullName LIKE CONCAT('%',#{likeFullName},'%')
+    </select>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.plan.mapper.VmDesignMapper">
+
+    <!-- 根据id集合查询虚拟机信息 -->
+    <select id="getVmListByIds" resultType="org.jeecg.modules.plan.entity.VmDesign">
+        select v.* from vm_design v where v.id in
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findByPage" resultType="org.jeecg.modules.plan.entity.VmProject">
+        select
+        vm.*,
+        r.project_name
+        from
+        tepm_vm_design vm
+        left join running_project r on vm.project_id = r.id
+        <where>
+            <if test="serverId != null  and serverId != ''">and vm.server_id like concat('%', #{serverId}, '%')</if>
+            <if test="vmName != null  and vmName != ''">and vm.vm_name like concat('%', #{vmName}, '%')</if>
+            <if test="projectName != null and projectName != ''">and r.project_name like concat('%', #{projectName}, '%')</if>
+            <if test="status != null  and status != ''">and vm.status=#{status}</if>
+            <if test="createBy != null  and createBy != ''">and vm.create_by=#{createBy}</if>
+            <if test="createBy != null  and createBy != ''">and r.create_by=#{createBy}</if>
+            and vm.idel = '0'
+        </where>
+        order by vm.create_time desc
+    </select>
+
+</mapper>

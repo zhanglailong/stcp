@@ -1,0 +1,40 @@
+package org.jeecg.modules.agent.service;
+
+import java.util.List;
+
+import org.jeecg.common.system.vo.DictModel;
+import org.jeecg.modules.agent.entity.SjcjAgent;
+import org.jeecg.modules.running.entity.RunningProject;
+import org.jeecg.modules.running.entity.RunningTask;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+public interface ISjcjAgentService extends IService<SjcjAgent> {
+	// 根据项目ID获取项目与测试项层级列表
+	List<RunningProject> getTaskByProject(String projectId);
+
+	// 根据项目ID获取测试项ID列表
+	List<String> getTaskIdByProject(String projectId);
+
+	// 根据测试项ID获取测试项与测试用例层级列表
+	List<RunningTask> getCaseByTask(String taskId);
+
+	// 根据环境ID更改客户端状态
+	int changeAgentStatusByEnvironmentId(String environmentId, String agentStatus);
+
+	// 根据客户端IP更改客户端状态
+	int changeAgentStatusByAgentIp(String agentIp, String agentStatus);
+
+	// 根据项目ID获取树层级列表(项目-轮次-测试类型-测试项-测试用例)
+	List<RunningProject> getTreeByProjectId(String projectId);
+
+	// 根据项目ID分页查询其客户端列表
+	Page<SjcjAgent> queryPageList(Page<SjcjAgent> page, String projectId, SjcjAgent sjcjAgent);
+
+	// 下拉选层级列表
+	List<DictModel> getOptionByCondition(String projectId, String turnId, String testTypeId, String taskId);
+	
+	// 根据`sjcj_agent_bind_case`表ID获取`sjcj_agent`表实体对象
+	SjcjAgent getSjcjAgentByCondition(String sjcjAgentBindCaseId);
+}

@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>org.jeecgframework.boot</groupId>
+		<artifactId>jeecg-boot-parent</artifactId>
+		<version>2.4.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>jeecg-boot-module-system</artifactId>
+
+	<repositories>
+		<repository>
+			<id>aliyun</id>
+			<name>aliyun Repository</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jeecg</id>
+			<name>jeecg Repository</name>
+			<url>http://maven.jeecg.org/nexus/content/repositories/jeecg</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency> 
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jeecgframework.boot</groupId>
+			<artifactId>jeecg-system-local-api</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.jeecgframework.boot</groupId> -->
+<!-- 			<artifactId>jeecg-boot-module-demo</artifactId> -->
+<!-- 			<version>${jeecgboot.version}</version> -->
+<!-- 		</dependency> -->
+		<dependency>
+            <groupId>org.smartboot.socket</groupId>
+            <artifactId>aio-pro</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+		<dependency>
+		    <groupId>org.smartboot.socket</groupId>
+		    <artifactId>aio-core</artifactId>
+		    <version>1.5.4</version>
+		    <classifier>sources</classifier>
+		    <type>java-source</type>
+		</dependency>
+		<!-- 增加公式计算的jar start -->
+<!--		<dependency>-->
+<!--		    <groupId>jep</groupId>-->
+<!--		    <artifactId>jep</artifactId>-->
+<!--		    <version>2.24</version>-->
+<!--		</dependency>-->
+		<!--<dependency>
+			<groupId>org.scijava</groupId>
+			<artifactId>jep</artifactId>
+			<version>2.4.2</version>
+		</dependency>-->
+		<!-- 增加公式计算的jar end -->
+
+		<!--解析html-->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.12.1</version>
+		</dependency>
+		<!-- 模拟游览器 -->
+		<dependency>
+			<groupId>net.sourceforge.htmlunit</groupId>
+			<artifactId>htmlunit</artifactId>
+			<version>2.46.0</version>
+		</dependency>
+
+        <!--解析csv-->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>4.0</version>
+		</dependency>
+
+		<!--rabbitmq消息队列-->
+		<dependency>
+			<groupId>org.jeecgframework.boot</groupId>
+			<artifactId>jeecg-boot-starter-rabbitmq</artifactId>
+		</dependency>
+
+		<!-- FTP上传下载 -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.3</version>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!--微服务模式下修改为 true,跳过此打包插件，否则微服务模块无法引用-->
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.agentbindcase.mapper.SjcjAgentBindCaseMapper">
+	<resultMap id="agentInfo"
+		type="org.jeecg.modules.agentbindcase.entity.SjcjAgentBindCase">
+		<id column="sabcId" property="id" />
+		<result column="projectId" property="projectId" />
+		<result column="turnId" property="turnId" />
+		<result column="testTypeId" property="testTypeId" />
+		<result column="taskId" property="taskId" />
+		<result column="caseId" property="caseId" />
+		<result column="toolId" property="toolId" />
+		<result column="sjcjAgentId" property="sjcjAgentId" />
+		<result column="environmentId" property="environmentId" />
+		<result column="agentIp" property="agentIp" />
+		<result column="agentName" property="agentName" />
+		<result column="agentPort" property="agentPort" />
+		<result column="agentStatus" property="agentStatus" />
+		<result column="saCreateTime" property="saCreateTime" />
+		<result column="projectName" property="projectName" />
+		<result column="projectCode" property="projectCode" />
+		<result column="turnName" property="turnName" />
+		<result column="testTypeName" property="testTypeName" />
+		<result column="testTypeCode" property="testTypeCode" />
+		<result column="taskName" property="taskName" />
+		<result column="taskCode" property="taskCode" />
+		<result column="caseName" property="caseName" />
+		<result column="caseCode" property="caseCode" />
+	</resultMap>
+
+	<select id="getAgentInfoByCaseId" resultMap="agentInfo">
+		SELECT
+		sabc.id AS sabcId,
+		sabc.project_id AS projectId,
+		sabc.turn_id AS turnId,
+		sabc.test_type_id AS testTypeId,
+		sabc.task_id AS taskId,
+		sabc.case_id AS caseId,
+		sabc.tool_id AS toolId,
+		sabc.sjcj_agent_id AS sjcjAgentId,
+		sa.environment_id AS environmentId,
+		sa.agent_ip AS agentIp,
+		sa.agent_name AS agentName,
+		sa.agent_port AS agentPort,
+		sa.agent_status AS agentStatus,
+		sa.create_time AS saCreateTime,
+		rp.project_name AS projectName,
+		rp.project_code AS projectCode,
+		rpt.turn_num AS turnName,
+		sdi.item_text AS testTypeName,
+		sdi.item_value AS testTypeCode,
+		rt.task_name AS taskName,
+		rt.task_code AS taskCode,
+		rc.test_name AS caseName,
+		rc.test_code AS caseCode
+		FROM sjcj_agent_bind_case sabc
+		JOIN sjcj_agent sa ON sa.id
+		= sabc.sjcj_agent_id
+		JOIN running_project rp ON rp.id = sabc.project_id
+		JOIN running_project_turn rpt ON rpt.id = sabc.turn_id
+		JOIN
+		sys_dict_item sdi ON sdi.id = sabc.test_type_id
+		JOIN running_task rt ON
+		rt.id = sabc.task_id
+		JOIN running_case rc ON rc.id = sabc.case_id
+		WHERE
+		sabc.case_id = #{caseId}
+	</select>
+</mapper>

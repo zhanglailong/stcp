@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.collectionresult.mapper.SjcjCollectionResultMapper">
+	<select id="getScreenshotHistory" resultType="org.jeecg.modules.collectionresult.entity.SjcjCollectionResult">
+		SELECT * FROM sjcj_collection_result 
+		WHERE type_of_collection = 'screenshot' 
+		AND sjcj_agent_bind_case_id = #{sjcjAgentBindCaseId} 
+		<if test="createTimeBegin != '' and createTimeBegin != null">
+			AND collection_time <![CDATA[ >=  ]]> to_date(#{createTimeBegin},'yyyy-MM-dd HH:mm:ss')
+		</if>
+		<if test="createTimeEnd != '' and createTimeEnd != null">
+			AND collection_time <![CDATA[ <=  ]]> to_date(#{createTimeEnd},'yyyy-MM-dd HH:mm:ss')
+		</if>
+		<if test="collectionDescription != '' and collectionDescription != null">
+			AND collection_description LIKE CONCAT('%', #{collectionDescription}, '%')
+		</if>
+		ORDER BY collection_time DESC 
+	</select>
+</mapper>

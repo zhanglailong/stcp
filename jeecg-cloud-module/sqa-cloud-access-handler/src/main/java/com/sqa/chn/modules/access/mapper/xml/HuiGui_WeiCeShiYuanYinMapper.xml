@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.HuiGui_WeiCeShiYuanYinMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.HuiGui_WeiCeShiYuanYin">
+        <result column="ID" property="iD" />
+        <result column="测试项ID" property="ceShiXiangID" />
+        <result column="测试项名称" property="ceShiXiangMingCheng" />
+        <result column="测试用例ID" property="ceShiYongLiID" />
+        <result column="测试用例名称" property="ceShiYongLiMingCheng" />
+        <result column="测试用例标识" property="ceShiYongLiBiaoShi" />
+        <result column="未测试原因" property="weiCeShiYuanYin" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 测试项ID, 测试项名称, 测试用例ID, 测试用例名称, 测试用例标识, 未测试原因
+    </sql>
+
+</mapper>

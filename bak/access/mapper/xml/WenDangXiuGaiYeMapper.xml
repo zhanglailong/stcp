@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.WenDangXiuGaiYeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.WenDangXiuGaiYe">
+        <result column="ID" property="id" />
+        <result column="文档名称" property="wenDangMingCheng" />
+        <result column="序号" property="xuHao" />
+        <result column="版本号" property="banBenHao" />
+        <result column="日期" property="riQi" />
+        <result column="所修改章节" property="suoXiuGaiZhangJie" />
+        <result column="所修改页" property="suoXiuGaiYe" />
+        <result column="备注" property="beiZhu" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 文档名称, 序号, 版本号, 日期, 所修改章节, 所修改页, 备注, 轮次ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5
+    </sql>
+
+</mapper>

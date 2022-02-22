@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.XiangMuFuJiaXinXiBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.XiangMuFuJiaXinXiBiao">
+        <result column="ID" property="id" />
+        <result column="备用1" property="beiYong1" />
+        <result column="备用2" property="beiYong2" />
+        <result column="备用3" property="beiYong3" />
+        <result column="备用4" property="beiYong4" />
+        <result column="备用5" property="beiYong5" />
+        <result column="备用6" property="beiYong6" />
+        <result column="备用7" property="beiYong7" />
+        <result column="备用8" property="beiYong8" />
+        <result column="备用9" property="beiYong9" />
+        <result column="备用10" property="beiYong10" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 备用1, 备用2, 备用3, 备用4, 备用5, 备用6, 备用7, 备用8, 备用9, 备用10
+    </sql>
+
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.JiHuaJinDuBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.JiHuaJinDuBiao">
+        <result column="ID" property="id" />
+        <result column="序号" property="xuHao" />
+        <result column="预计开始时间" property="yuJiKaiShiShiJian" />
+        <result column="预计完成时间" property="yuJiWanChengShiJian" />
+        <result column="组织人员ID" property="zuZhiRenYuanID" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="工作内容说明" property="gongZuoNeiRongShuoMing" />
+        <result column="备注" property="beiZhu" />
+        <result column="活动名称" property="huoDongMingCheng" />
+        <result column="工作产品" property="gongZuoChanPin" />
+        <result column="工作量估计" property="gongZuoLiangGuJi" />
+        <result column="预计工作量" property="yuJiGongZuoLiang" />
+        <result column="实际工作量" property="shiJiGongZuoLiang" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 序号, 预计开始时间, 预计完成时间, 组织人员ID, 轮次ID, 工作内容说明, 备注, 活动名称, 工作产品, 工作量估计, 预计工作量, 实际工作量
+    </sql>
+
+</mapper>

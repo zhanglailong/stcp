@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.CanYuZuZhiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.CanYuZuZhi">
+        <result column="参与组织ID" property="canYuZuZhiID" />
+        <result column="序号" property="xuHao" />
+        <result column="参与组织的名称" property="canYuZuZhiDeMingCheng" />
+        <result column="角色与职责" property="jiaoSeYuZhiZe" />
+        <result column="备注" property="beiZhu" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="测试场所ID" property="ceShiChangSuoID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        参与组织ID, 序号, 参与组织的名称, 角色与职责, 备注, 轮次ID, 测试场所ID
+    </sql>
+
+</mapper>

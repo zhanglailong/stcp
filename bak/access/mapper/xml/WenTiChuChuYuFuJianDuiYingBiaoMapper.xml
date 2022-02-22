@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.WenTiChuChuYuFuJianDuiYingBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.WenTiChuChuYuFuJianDuiYingBiao">
+        <result column="问题出处附件ID" property="wenTiChuChuFuJianID" />
+        <result column="问题出处ID" property="wenTiChuChuID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        问题出处附件ID, 问题出处ID
+    </sql>
+
+</mapper>

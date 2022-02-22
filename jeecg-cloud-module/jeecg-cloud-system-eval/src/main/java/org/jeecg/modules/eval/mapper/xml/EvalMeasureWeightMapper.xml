@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.eval.mapper.EvalMeasureWeightMapper">
+
+    <select id="queryTreeList" resultType="org.jeecg.modules.eval.entity.EvalMeasureInfoVo" parameterType="java.lang.String">
+        SELECT
+            t1.id,
+            t1.sid,
+            t1.name,
+			t1.parent_id as parentId,
+            t2.parent_name as parentName,
+            t1.grand_id,
+            t2.grand_name,
+            t3.weight as weight,
+            t4.weight as parentWeight,
+            t5.weight as grandWeight,
+            t3.id as ids,
+			t4.id as idParent,
+			t5.id as idGrand,
+            t6.formula
+        FROM
+            eval_measure_info t1
+        LEFT JOIN eval_measure_structure t2 ON t1.sid = t2.id
+        LEFT JOIN eval_measure_weight t3 on t3.measure_id = t1.sid and t3.system_id = t1.system_id
+        LEFT JOIN eval_measure_weight t4 on t4.measure_id = t1.parent_id and t4.system_id = t1.system_id
+        LEFT JOIN eval_measure_weight t5 on t5.measure_id = t1.grand_id and t5.system_id = t1.system_id
+        LEFT JOIN eval_formula t6 on t1.formula = t6.id
+            where t1.system_id = #{systemId}
+        ORDER BY
+            t1.grand_id,t1.parent_id+0,t1.sid+0
+    </select>
+
+    <select id="queryCount" parameterType="java.lang.String" resultType="org.jeecg.modules.eval.entity.EvalMeasureStructureVo">
+        SELECT
+            ( SELECT count( emi1.parent_id ) FROM eval_measure_info emi1 WHERE emi1.grand_id = ems.grand_id GROUP BY emi1.grand_id ) countParent,
+            ( SELECT count( emi2.id ) FROM eval_measure_info emi2 WHERE emi2.parent_id = ems.parent_id GROUP BY emi2.parent_id ) countId,
+            ems.grand_id grandId,
+            ems.parent_id parentId,
+            ems.id as id
+        FROM
+            eval_measure_structure ems
+        WHERE
+            ems.id = #{id};
+    </select>
+
+    <select id="queryGrand" parameterType="java.lang.String" resultType="org.jeecg.modules.eval.entity.EvalMeasureStructureVo">
+        SELECT
+	        count( t.parent_id ) countId,
+	        t.grand_id
+        FROM
+            eval_measure_info t
+        WHERE
+            t.grand_id = #{grandId}
+        and t.system_id = #{systemId}
+        and t.parent_id &lt;&gt; #{parentId};
+    </select>
+
+    <select id="queryGrandOne" parameterType="java.lang.String" resultType="org.jeecg.modules.eval.entity.EvalMeasureStructureVo">
+        SELECT
+	        count( t.parent_id ) countId,
+	        t.grand_id
+        FROM
+            eval_measure_info t
+        WHERE
+            t.grand_id = #{grandId}
+        and t.system_id = #{systemId}
+    </select>
+
+    <select id="getListBySystemId" resultType="org.jeecg.modules.eval.entity.EvalMeasureWeight">
+        SELECT *
+        FROM `eval_measure_weight`
+        WHERE system_id = #{systemId}
+    </select>
+</mapper>

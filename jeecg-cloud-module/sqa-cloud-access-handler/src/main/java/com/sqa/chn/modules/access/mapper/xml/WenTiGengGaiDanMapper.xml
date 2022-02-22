@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.WenTiGengGaiDanMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.WenTiGengGaiDan">
+        <result column="问题ID" property="wenTiID" />
+        <result column="解决人" property="jieJueRen" />
+        <result column="解决时间" property="jieJueShiJian" />
+        <result column="问题确认" property="wenTiQueRen" />
+        <result column="成因分析" property="chengYinFenXi" />
+        <result column="更改方案" property="gengGaiFangAn" />
+        <result column="更改前" property="gengGaiQian" />
+        <result column="更改后" property="gengGaiHou" />
+        <result column="更改影响域分析" property="gengGaiYingXiangYuFenXi" />
+        <result column="不更改的原因" property="buGengGaiDeYuanYin" />
+        <result column="解决意见备注" property="jieJueYiJianBeiZhu" />
+        <result column="解决意见" property="jieJueYiJian" />
+        <result column="确认人" property="queRenRen" />
+        <result column="确认时间" property="queRenShiJian" />
+        <result column="更改前版本" property="gengGaiQianBanBen" />
+        <result column="更改后版本" property="gengGaiHouBanBen" />
+        <result column="问题的解决状态" property="wenTiDeJieJueZhuangTai" />
+        <result column="解决状态备注" property="jieJueZhuangTaiBeiZhu" />
+        <result column="验证人" property="yanZhengRen" />
+        <result column="验证时间" property="yanZhengShiJian" />
+        <result column="所属被测对象" property="suoShuBeiCeDuiXiang" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        问题ID, 解决人, 解决时间, 问题确认, 成因分析, 更改方案, 更改前, 更改后, 更改影响域分析, 不更改的原因, 解决意见备注, 解决意见, 确认人, 确认时间, 更改前版本, 更改后版本, 问题的解决状态, 解决状态备注, 验证人, 验证时间, 所属被测对象, 轮次ID, 预留字段1, 预留字段2, 预留字段3, 预留字段4
+    </sql>
+
+</mapper>

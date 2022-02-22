@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.ShuYuYuSuoLveYuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.ShuYuYuSuoLveYu">
+        <result column="ID" property="id" />
+        <result column="术语和缩略语名" property="shuYuHeSuoLveYuMing" />
+        <result column="摘要说明" property="zhaiYaoShuoMing" />
+        <result column="备注" property="beiZhu" />
+        <result column="序号" property="xuHao" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 术语和缩略语名, 摘要说明, 备注, 序号
+    </sql>
+
+</mapper>

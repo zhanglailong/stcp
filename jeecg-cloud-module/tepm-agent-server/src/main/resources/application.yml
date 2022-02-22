@@ -1,0 +1,11 @@
+server:
+  port: 9005
+spring:
+  application:
+    name: tepm-agent-server
+socket:
+  server:
+    port: 9006
+    ip: 192.168.1.9 #192.168.56.1
+    scheduler: 0/10 * * * * ?
+    vmPort: 9050

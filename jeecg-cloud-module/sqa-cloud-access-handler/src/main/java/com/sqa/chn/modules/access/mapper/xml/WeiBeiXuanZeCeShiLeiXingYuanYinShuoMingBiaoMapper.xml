@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.WeiBeiXuanZeCeShiLeiXingYuanYinShuoMingBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.WeiBeiXuanZeCeShiLeiXingYuanYinShuoMingBiao">
+        <result column="序号" property="xuHao" />
+        <result column="被测对象名称" property="beiCeDuiXiangMingCheng" />
+        <result column="测试类型ID" property="ceShiLeiXingID" />
+        <result column="原因说明" property="yuanYinShuoMing" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        序号, 被测对象名称, 测试类型ID, 原因说明
+    </sql>
+
+</mapper>

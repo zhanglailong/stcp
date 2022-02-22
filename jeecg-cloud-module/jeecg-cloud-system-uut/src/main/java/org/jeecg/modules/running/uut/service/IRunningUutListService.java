@@ -1,0 +1,28 @@
+package org.jeecg.modules.running.uut.service;
+
+import org.jeecg.modules.running.uut.entity.RunningUutList;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import org.jeecg.modules.running.uut.vo.RunningUutListVo;
+
+/**
+ * @Description: 被测对象列表
+ * @Author: jeecg-boot
+ * @Date:   2020-12-23
+ * @Version: V1.0
+ */
+public interface IRunningUutListService extends IService<RunningUutList> {
+	
+	/**
+	 * 根据字段查唯一实体
+	 * @param fieldname true
+	 * @param value true
+	 * @return 没有返回值
+	 */
+	public RunningUutList findUniqueBy (String fieldname, String value);
+
+	/**
+	 * 根据字段查唯一实体
+	 */
+	public RunningUutListVo findUniqueVoBy (String fieldname, String value);
+}

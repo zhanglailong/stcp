@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.CeShiZhunBeiBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.CeShiZhunBeiBiao">
+        <result column="ID" property="id" />
+        <result column="序号" property="xuHao" />
+        <result column="测试准备名称" property="ceShiZhunBeiMingCheng" />
+        <result column="测试进度" property="ceShiJinDu" />
+        <result column="软件准备" property="ruanJianZhunBei" />
+        <result column="硬件准备" property="yingJianZhunBei" />
+        <result column="其它测试准备" property="qiTaCeShiZhunBei" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 序号, 测试准备名称, 测试进度, 软件准备, 硬件准备, 其它测试准备
+    </sql>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.LinShiYongLiBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.LinShiYongLiBiao">
+        <result column="ID" property="id" />
+        <result column="问题单ID" property="wenTiDanID" />
+        <result column="测试用例名称" property="ceShiYongLiMingCheng" />
+        <result column="测试用例标识" property="ceShiYongLiBiaoShi" />
+        <result column="测试用例章节号" property="ceShiYongLiZhangJieHao" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 问题单ID, 测试用例名称, 测试用例标识, 测试用例章节号
+    </sql>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.RenYuanQuanXianBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.RenYuanQuanXianBiao">
+        <result column="ID" property="id" />
+        <result column="人员主ID" property="renYuanZhuID" />
+        <result column="人员附ID" property="renYuanFuID" />
+        <result column="操作权限" property="caoZuoQuanXian" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 人员主ID, 人员附ID, 操作权限
+    </sql>
+
+</mapper>

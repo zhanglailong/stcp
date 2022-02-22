@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.agent.mapper.SjcjAgentMapper">
+	<resultMap id="taskByProject"
+		type="org.jeecg.modules.running.entity.RunningProject">
+		<id column="pId" property="key" />
+		<result column="project_name" property="title" />
+		<collection property="children"
+			ofType="org.jeecg.modules.running.entity.RunningTask" javaType="java.util.ArrayList">
+			<id column="tId" property="key" />
+			<result column="task_name" property="title" />
+		</collection>
+	</resultMap>
+
+	<select id="getTaskByProject" resultMap="taskByProject">
+		SELECT
+		p.id as pId,
+		p.project_name,
+		t.id as tId,
+		t.task_name
+		FROM
+		running_project p
+		LEFT JOIN
+		running_task t ON p.id = t.project_id
+		WHERE
+		p.del_flag = 0
+		AND
+		t.del_flag = 0
+		<if test="projectId !='' and projectId !=null">
+			AND p.id = #{projectId}
+		</if>
+	</select>
+
+	<resultMap id="caseByTask" type="org.jeecg.modules.running.entity.RunningTask">
+		<id column="tId" property="key" />
+		<result column="task_name" property="title" />
+		<collection property="children"
+			ofType="org.jeecg.modules.running.entity.RunningCase" javaType="java.util.ArrayList">
+			<id column="cId" property="key" />
+			<result column="test_name" property="title" />
+		</collection>
+	</resultMap>
+
+	<select id="getCaseByTask" resultMap="caseByTask">
+		SELECT
+		t.id as tId,
+		t.task_name,
+		c.id as cId,
+		c.test_name
+		FROM
+		running_task
+		t
+		LEFT JOIN
+		running_case c ON t.id = c.test_task_id
+		WHERE
+		t.del_flag = 0
+		AND
+		c.del_flag = 0
+		<if test="taskId !='' and taskId !=null">
+			AND t.id = #{taskId}
+		</if>
+	</select>
+
+
+	<!-- 根据项目ID获取树层级列表(项目-轮次-测试类型-测试项-测试用例) -->
+	<!-- 测试用例 -->
+	<resultMap id="RunningCaseResult" type="org.jeecg.modules.running.entity.RunningCase">
+		<id property="key" column="rc_id" />
+		<result property="title" column="test_name" />
+	</resultMap>
+
+	<!-- 测试项 -->
+	<resultMap id="RunningTaskResult" type="org.jeecg.modules.running.entity.RunningTask">
+		<id property="key" column="rt_id" />
+		<result property="title" column="task_name" />
+		<collection property="children"
+			ofType="org.jeecg.modules.running.entity.RunningCase" resultMap="RunningCaseResult" />
+	</resultMap>
+
+	<!-- 测试类型 -->
+	<resultMap id="SysDictItemResult" type="org.jeecg.modules.running.entity.SysDictItem">
+		<id property="key" column="sdi_id" />
+		<result property="title" column="item_text" />
+		<collection property="children"
+			ofType="org.jeecg.modules.running.entity.RunningTask" resultMap="RunningTaskResult" />
+	</resultMap>
+
+	<!-- 轮次 -->
+	<resultMap id="RunningProjectTurnResult"
+		type="org.jeecg.modules.running.entity.RunningProjectTurn">
+		<id property="key" column="rpt_id" />
+		<result property="title" column="turn_num" />
+		<collection property="children"
+			ofType="org.jeecg.modules.running.entity.SysDictItem" resultMap="SysDictItemResult" />
+	</resultMap>
+
+	<!-- 项目 -->
+	<resultMap id="RunningProjectResult"
+		type="org.jeecg.modules.running.entity.RunningProject">
+		<id property="key" column="rp_id" />
+		<result property="title" column="project_name" />
+		<collection property="children"
+			ofType="org.jeecg.modules.running.entity.RunningProjectTurn"
+			resultMap="RunningProjectTurnResult" />
+	</resultMap>
+
+	<select id="getTreeByProjectId" parameterType="String"
+		resultMap="RunningProjectResult">
+		SELECT
+		rp.id AS rp_id,
+		rp.project_name,
+		rpt.id AS rpt_id,
+		rpt.turn_num,
+		sdi.id AS sdi_id,
+		sdi.item_text,
+		rt.id AS rt_id,
+		rt.task_name,
+		rc.id AS rc_id,
+		rc.test_name
+		FROM
+		running_case rc
+		LEFT JOIN
+		running_task rt ON rt.id = rc.test_task_id
+		LEFT JOIN running_project rp
+		ON rp.id = rt.project_id
+		LEFT JOIN sys_dict_item sdi ON sdi.item_value
+		= rt.test_type
+		LEFT JOIN running_project_turn rpt ON rpt.id =
+		rt.turn_id
+		WHERE
+		rp.del_flag = 0
+		AND rp.id = #{projectId}
+		AND sdi.dict_id
+		= (
+		SELECT
+		id
+		FROM
+		sys_dict
+		WHERE
+		dict_code = 'testType')
+	</select>
+
+	<!-- 下拉选层级列表 -->
+	<select id="getOptionByCondition" resultType="org.jeecg.common.system.vo.DictModel">
+
+		<!-- 根据项目ID获取轮次列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and (turnId == '' or turnId == null) 
+			and (testTypeId == '' or testTypeId == null) 
+			and (taskId == '' or taskId == null)">
+			SELECT rpt.id AS `value`, rpt.turn_num AS `text`
+		</if>
+
+		<!-- 根据项目ID及轮次ID获取测试类型列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and turnId != '' and turnId != null 
+			and (testTypeId == '' or testTypeId == null) 
+			and (taskId == '' or taskId == null)">
+			SELECT sdi.id AS `value`, sdi.item_text AS `text`
+		</if>
+
+		<!-- 根据项目ID、轮次ID及测试类型获取测试项列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and turnId != '' and turnId != null 
+			and testTypeId != '' and testTypeId != null 
+			and (taskId == '' or taskId == null)">
+			SELECT rt.id AS `value`, rt.task_name AS `text`
+		</if>
+
+		<!-- 根据项目ID、轮次ID、测试类型及测试项ID获取测试用例列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and turnId != '' and turnId != null 
+			and testTypeId != '' and testTypeId != null 
+			and taskId != '' and taskId != null">
+			SELECT rc.id AS `value`, rc.test_name AS `text`
+		</if>
+
+		FROM running_case rc
+		LEFT JOIN running_task rt ON rt.id =
+		rc.test_task_id
+		LEFT JOIN running_project rp ON rp.id = rt.project_id
+		LEFT JOIN sys_dict_item sdi ON sdi.item_value = rt.test_type
+		LEFT JOIN
+		running_project_turn rpt ON rpt.id = rt.turn_id
+		WHERE rp.del_flag = 0
+		AND rp.id = #{projectId}
+		AND sdi.dict_id = ( SELECT id FROM sys_dict
+		WHERE dict_code = 'testType')
+
+		<!-- 根据项目ID获取轮次列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and (turnId == '' or turnId == null) 
+			and (testTypeId == '' or testTypeId == null) 
+			and (taskId == '' or taskId == null)">
+			GROUP BY rpt.id
+		</if>
+
+		<!-- 根据项目ID及轮次ID获取测试类型列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and turnId != '' and turnId != null 
+			and (testTypeId == '' or testTypeId == null) 
+			and (taskId == '' or taskId == null)">
+			AND rpt.id = #{turnId}
+			GROUP BY sdi.id
+		</if>
+
+		<!-- 根据项目ID、轮次ID及测试类型Id获取测试项列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and turnId != '' and turnId != null 
+			and testTypeId != '' and testTypeId != null 
+			and (taskId == '' or taskId == null)">
+			AND rpt.id = #{turnId}
+			AND sdi.id = #{testTypeId}
+			GROUP BY rt.id
+		</if>
+
+		<!-- 根据项目ID、轮次ID、测试类型Id及测试项ID获取测试用例列表 -->
+		<if
+			test="projectId !='' and projectId !=null 
+			and turnId != '' and turnId != null 
+			and testTypeId != '' and testTypeId != null 
+			and taskId != '' and taskId != null">
+			AND rpt.id = #{turnId}
+			AND sdi.id = #{testTypeId}
+			AND rt.id =
+			#{taskId}
+			GROUP BY rc.id
+		</if>
+	</select>
+
+	<!-- 客户端 -->
+	<resultMap id="SjcjAgentResult" type="org.jeecg.modules.agent.entity.SjcjAgent">
+		<id property="id" column="saId" />
+		<result property="environmentId" column="environmentId" />
+		<result property="agentName" column="agentName" />
+		<result property="agentIp" column="agentIp" />
+		<result property="agentPort" column="agentPort" />
+		<result property="agentStatus" column="agentStatus" />
+		<result property="createTime" column="createTime" />
+	</resultMap>
+
+	<select id="getAgentListByCaseId" parameterType="String"
+		resultMap="SjcjAgentResult">
+		SELECT
+		rp.id AS rp_id,
+		rp.project_name,
+		rpt.id AS rpt_id,
+		rpt.turn_num,
+		sdi.id AS sdi_id,
+		sdi.item_text,
+		rt.id AS rt_id,
+		rt.task_name,
+		rc.id AS rc_id,
+		rc.test_name
+		FROM
+		running_case rc
+		LEFT JOIN
+		running_task rt ON rt.id = rc.test_task_id
+		LEFT JOIN running_project rp
+		ON rp.id = rt.project_id
+		LEFT JOIN sys_dict_item sdi ON sdi.item_value
+		= rt.test_type
+		LEFT JOIN running_project_turn rpt ON rpt.id =
+		rt.turn_id
+		WHERE
+		rp.del_flag = 0
+		AND rp.id = #{projectId}
+		AND sdi.dict_id
+		= (
+		SELECT
+		id
+		FROM
+		sys_dict
+		WHERE
+		dict_code = 'testType')
+	</select>
+	
+	<select id="getAgentByProjectId" resultType="org.jeecg.modules.agent.entity.SjcjAgent">
+		SELECT sa.* 
+		FROM sjcj_agent sa, sjcj_project_associated_agent spaa 
+		WHERE sa.id = spaa.sjcj_agent_id 
+		AND spaa.project_id = #{projectId} 
+		<if test="sjcjAgent.agentName != '' and sjcjAgent.agentName != null">
+			AND sa.agent_name LIKE CONCAT('%', #{sjcjAgent.agentName}, '%')
+		</if>
+		<if test="sjcjAgent.agentIp != '' and sjcjAgent.agentIp != null">
+			AND sa.agent_ip LIKE CONCAT('%', #{sjcjAgent.agentIp}, '%')
+		</if>
+		ORDER BY sa.create_time DESC
+	</select>
+</mapper>

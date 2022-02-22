@@ -1,0 +1,10 @@
+server:
+  #微服务端口
+  port: 7001
+spring:
+  cloud:
+    nacos:
+      discovery:
+        ip: @config.ip@
+  application:
+    name: jeecg-system

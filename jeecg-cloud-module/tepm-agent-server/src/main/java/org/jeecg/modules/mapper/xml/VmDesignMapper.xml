@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.plan.mapper.VmDesignMapper">
+
+    <!-- 根据id集合查询虚拟机信息 -->
+    <select id="getVmListByIds" resultType="org.jeecg.modules.plan.entity.VmDesign">
+        select v.* from vm_design v where v.id in
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>

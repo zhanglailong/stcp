@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.LiangHuaPingJiaBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.LiangHuaPingJiaBiao">
+        <result column="ID" property="id" />
+        <result column="已提供合格功能数" property="yiTiGongHeGeGongNengShu" />
+        <result column="应提供合格功能数" property="yingTiGongHeGeGongNengShu" />
+        <result column="功能正确实现率" property="gongNengZhengQueShiXianLv" />
+        <result column="问题总数" property="wenTiZongShu" />
+        <result column="代码行数" property="daiMaXingShu" />
+        <result column="千行代码缺陷率" property="qianXingDaiMaQueXianLv" />
+        <result column="实占内存空间" property="shiZhanNeiCunKongJian" />
+        <result column="可用内存空间" property="keYongNeiCunKongJian" />
+        <result column="内存效率" property="neiCunXiaoLv" />
+        <result column="实际占用时间" property="shiJiZhanYongShiJian" />
+        <result column="分配占用时间" property="fenPeiZhanYongShiJian" />
+        <result column="时间效率" property="shiJianXiaoLv" />
+        <result column="注释行总数" property="zhuShiXingZongShu" />
+        <result column="代码总行数" property="daiMaZongXingShu" />
+        <result column="程序注释率" property="chengXuZhuShiLv" />
+        <result column="被测对象ID" property="beiCeDuiXiangID" />
+        <result column="轮次ID" property="lunCiID" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, 已提供合格功能数, 应提供合格功能数, 功能正确实现率, 问题总数, 代码行数, 千行代码缺陷率, 实占内存空间, 可用内存空间, 内存效率, 实际占用时间, 分配占用时间, 时间效率, 注释行总数, 代码总行数, 程序注释率, 被测对象ID, 轮次ID
+    </sql>
+
+</mapper>

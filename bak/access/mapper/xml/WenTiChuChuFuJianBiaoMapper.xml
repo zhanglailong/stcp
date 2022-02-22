@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.WenTiChuChuFuJianBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.WenTiChuChuFuJianBiao">
+        <result column="附件类型" property="fuJianLeiXing" />
+        <result column="问题出处附件ID" property="wenTiChuChuFuJianID" />
+        <result column="关联数" property="guanLianShu" />
+        <result column="附件内容" property="fuJianNeiRong" />
+        <result column="附件名称" property="fuJianMingCheng" />
+        <result column="备注" property="beiZhu" />
+        <result column="对应原文件路径" property="duiYingYuanWenJianLuJing" />
+        <result column="输出与否" property="shuChuYuFou" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        附件类型, 问题出处附件ID, 关联数, 附件内容, 附件名称, 备注, 对应原文件路径, 输出与否
+    </sql>
+
+</mapper>

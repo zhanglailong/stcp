@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.ZhiLiangTeXingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.ZhiLiangTeXing">
+        <result column="质量特性ID" property="zhiLiangTeXingID" />
+        <result column="特性名称" property="teXingMingCheng" />
+        <result column="简写码" property="jianXieMa" />
+        <result column="简要说明" property="jianYaoShuoMing" />
+        <result column="重要性等级" property="zhongYaoXingDengJi" />
+        <result column="采用技术" property="caiYongJiShu" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        质量特性ID, 特性名称, 简写码, 简要说明, 重要性等级, 采用技术
+    </sql>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jeecg.modules.access.mapper.CeShiYongLiLeiXingBiaoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.jeecg.modules.access.entity.CeShiYongLiLeiXingBiao">
+        <result column="测试用例类型ID" property="ceShiYongLiLeiXingID" />
+        <result column="测试用例类型名称" property="ceShiYongLiLeiXingMingCheng" />
+        <result column="简写码" property="jianXieMa" />
+        <result column="简要说明" property="jianYaoShuoMing" />
+        <result column="重要性等级" property="zhongYaoXingDengJi" />
+        <result column="序号" property="xuHao" />
+        <result column="备注" property="beiZhu" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        测试用例类型ID, 测试用例类型名称, 简写码, 简要说明, 重要性等级, 序号, 备注, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5
+    </sql>
+
+</mapper>

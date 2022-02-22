@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqa.chn.modules.access.mapper.WenTiBaoGaoDanMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.sqa.chn.modules.access.entity.WenTiBaoGaoDan">
+        <result column="问题ID" property="wenTiID" />
+        <result column="问题名称" property="wenTiMingCheng" />
+        <result column="问题位置" property="wenTiWeiZhi" />
+        <result column="问题状态" property="wenTiZhuangTai" />
+        <result column="序号" property="xuHao" />
+        <result column="发现日期" property="faXianRiQi" />
+        <result column="报告日期" property="baoGaoRiQi" />
+        <result column="报告人" property="baoGaoRen" />
+        <result column="程序文档名称" property="chengXuWenDangMingCheng" />
+        <result column="问题类别" property="wenTiLeiBie" />
+        <result column="问题级别" property="wenTiJiBie" />
+        <result column="问题追踪" property="wenTiZhuiZong" />
+        <result column="问题描述" property="wenTiMiaoShu" />
+        <result column="附注及修改建议" property="fuZhuJiXiuGaiJianYi" />
+        <result column="一级标识" property="yiJiBiaoShi" />
+        <result column="二级标识" property="erJiBiaoShi" />
+        <result column="三级标识" property="sanJiBiaoShi" />
+        <result column="四级标识" property="siJiBiaoShi" />
+        <result column="同标识序号" property="tongBiaoShiXuHao" />
+        <result column="所属被测对象" property="suoShuBeiCeDuiXiang" />
+        <result column="审核人" property="shenHeRen" />
+        <result column="审核结论" property="shenHeJieLun" />
+        <result column="审核时间" property="shenHeShiJian" />
+        <result column="审核状态" property="shenHeZhuangTai" />
+        <result column="审核备注" property="shenHeBeiZhu" />
+        <result column="轮次ID" property="lunCiID" />
+        <result column="备用1" property="beiYong1" />
+        <result column="备用2" property="beiYong2" />
+        <result column="预留字段1" property="yuLiuZiDuan1" />
+        <result column="预留字段2" property="yuLiuZiDuan2" />
+        <result column="预留字段3" property="yuLiuZiDuan3" />
+        <result column="预留字段4" property="yuLiuZiDuan4" />
+        <result column="预留字段5" property="yuLiuZiDuan5" />
+        <result column="问题概要描述" property="wenTiGaiYaoMiaoShu" />
+        <result column="问题处置情况" property="wenTiChuZhiQingKuang" />
+        <result column="新老状态" property="xinLaoZhuangTai" />
+        <result column="运行载体" property="yunXingZaiTi" />
+        <result column="具体失效形式" property="juTiShiXiaoXingShi" />
+        <result column="预留字段6" property="yuLiuZiDuan6" />
+        <result column="预留字段7" property="yuLiuZiDuan7" />
+        <result column="备注" property="beiZhu" />
+        <result column="问题形式" property="wenTiXingShi" />
+        <result column="测试阶段" property="ceShiJieDuan" />
+        <result column="问题子类别" property="wenTiZiLeiBie" />
+        <result column="处置人员" property="chuZhiRenYuan" />
+        <result column="审批领导" property="shenPiLingDao" />
+        <result column="处置日期" property="chuZhiRiQi" />
+        <result column="审批日期" property="shenPiRiQi" />
+        <result column="修改状态" property="xiuGaiZhuangTai" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        问题ID, 问题名称, 问题位置, 问题状态, 序号, 发现日期, 报告日期, 报告人, 程序文档名称, 问题类别, 问题级别, 问题追踪, 问题描述, 附注及修改建议, 一级标识, 二级标识, 三级标识, 四级标识, 同标识序号, 所属被测对象, 审核人, 审核结论, 审核时间, 审核状态, 审核备注, 轮次ID, 备用1, 备用2, 预留字段1, 预留字段2, 预留字段3, 预留字段4, 预留字段5, 问题概要描述, 问题处置情况, 新老状态, 运行载体, 具体失效形式, 预留字段6, 预留字段7, 备注, 问题形式, 测试阶段, 问题子类别, 处置人员, 审批领导, 处置日期, 审批日期, 修改状态
+    </sql>
+
+</mapper>
